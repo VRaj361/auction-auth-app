@@ -8,13 +8,13 @@
 //   const user = JSON.parse(localStorage.getItem('user'));
 
 //   useEffect(() => {
-//     fetch(`http://localhost:8000/api/inquiries/${id}`)
+//     fetch(`${process.env.REACT_APP_SERVER_URL}api/inquiries/${id}`)
 //       .then((res) => res.json())
 //       .then((data) => setInquiry(data))
 //       .catch((err) => console.error(err));
 
 //     // Fetch inquiry status for this user and inquiry
-//     fetch(`http://localhost:8000/api/inquiry-status?userId=${user._id}&inquiryId=${id}`)
+//     fetch(`${process.env.REACT_APP_SERVER_URL}api/inquiry-status?userId=${user._id}&inquiryId=${id}`)
 //       .then((res) => res.json())
 //       .then((data) => {
 //         if (data.success && data.status) {
@@ -27,7 +27,7 @@
 //   const handleReject = async () => {
 //     console.log('in')
 //     const user = JSON.parse(localStorage.getItem('user'));
-//     const res = await fetch('http://localhost:8000/api/inquiry-status', {
+//     const res = await fetch('${process.env.REACT_APP_SERVER_URL}api/inquiry-status', {
 //       method: 'POST',
 //       headers: { 'Content-Type': 'application/json' },
 //       body: JSON.stringify({
@@ -123,7 +123,7 @@
 //   };
 
 //   useEffect(() => {
-//     fetch(`http://localhost:8000/api/inquiries/${id}`)
+//     fetch(`${process.env.REACT_APP_SERVER_URL}api/inquiries/${id}`)
 //       .then((res) => res.json())
 //       .then((data) => {
 //         setInquiry(data);
@@ -135,7 +135,7 @@
 //       });
 
 //     fetch(
-//       `http://localhost:8000/api/inquiry-status?userId=${user._id}&inquiryId=${id}`
+//       `${process.env.REACT_APP_SERVER_URL}api/inquiry-status?userId=${user._id}&inquiryId=${id}`
 //     )
 //       .then((res) => res.json())
 //       .then((data) => {
@@ -151,7 +151,7 @@
 //   }, [id, user._id]);
 
 //   const handleReject = async () => {
-//     const res = await fetch("http://localhost:8000/api/inquiry-status", {
+//     const res = await fetch("${process.env.REACT_APP_SERVER_URL}api/inquiry-status", {
 //       method: "POST",
 //       headers: { "Content-Type": "application/json" },
 //       body: JSON.stringify({
@@ -178,7 +178,7 @@
 //   };
 
 //   const handleAcceptSubmit = async () => {
-//     const res = await fetch("http://localhost:8000/api/inquiry-status", {
+//     const res = await fetch("${process.env.REACT_APP_SERVER_URL}api/inquiry-status", {
 //       method: "POST",
 //       headers: { "Content-Type": "application/json" },
 //       body: JSON.stringify({
@@ -360,7 +360,7 @@ function InquiryDetails() {
   };
 
   useEffect(() => {
-    fetch(`http://localhost:8000/api/inquiries/${id}`)
+    fetch(`${process.env.REACT_APP_SERVER_URL}api/inquiries/${id}`)
       .then((res) => res.json())
       .then((data) => {
         setInquiry(data);
@@ -372,7 +372,7 @@ function InquiryDetails() {
       });
 
     fetch(
-      `http://localhost:8000/api/inquiry-status?userId=${user._id}&inquiryId=${id}`
+      `${process.env.REACT_APP_SERVER_URL}api/inquiry-status?userId=${user._id}&inquiryId=${id}`
     )
       .then((res) => res.json())
       .then((data) => {
@@ -388,7 +388,7 @@ function InquiryDetails() {
   }, [id, user._id]);
 
   const handleReject = async () => {
-    const res = await fetch("http://localhost:8000/api/inquiry-status", {
+    const res = await fetch(`${process.env.REACT_APP_SERVER_URL}api/inquiry-status`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -415,7 +415,7 @@ function InquiryDetails() {
   };
 
   const handleAcceptSubmit = async () => {
-    const res = await fetch("http://localhost:8000/api/inquiry-status", {
+    const res = await fetch(`${process.env.REACT_APP_SERVER_URL}api/inquiry-status`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({

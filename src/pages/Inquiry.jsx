@@ -9,7 +9,7 @@ function Inquiry() {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    fetch("http://localhost:8000/api/inquiries")
+    fetch(`${process.env.REACT_APP_SERVER_URL}api/inquiries`)
       .then((res) => res.json())
       .then((data) => {setInquiries(data); setLoading(false);})
       .catch((err) => { console.error(err); setLoading(false);});

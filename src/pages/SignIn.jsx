@@ -10,7 +10,7 @@ function SignIn({ setUser }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const res = await fetch('http://localhost:8000/api/signin', {
+    const res = await fetch(`${process.env.REACT_APP_SERVER_URL}api/signin`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ email, password }),

@@ -8,7 +8,7 @@ function PurchaseOrder() {
   const user = JSON.parse(localStorage.getItem("user"));
 
   useEffect(() => {
-    fetch(`http://localhost:8000/api/inquiry-status/all?userId=${user._id}`)
+    fetch(`${process.env.REACT_APP_SERVER_URL}api/inquiry-status/all?userId=${user._id}`)
       .then((res) => res.json())
       .then((data) => {
         if (data.success) {

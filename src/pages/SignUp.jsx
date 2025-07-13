@@ -10,7 +10,7 @@ function SignUp() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const res = await fetch('http://localhost:8000/api/signup', {
+    const res = await fetch(`${process.env.REACT_APP_SERVER_URL}api/signup`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(form),
