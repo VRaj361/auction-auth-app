@@ -391,3 +391,12 @@ button {
 .submit-btn:hover {
   background-color: #00695c;
 }
+
+.next-btn {
+  color: white;
+  background-color: #004d40;
+}
+
+.next-btn:hover {
+  background-color: #00695c;
+}

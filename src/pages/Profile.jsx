@@ -33,6 +33,7 @@ function Profile({ user }) {
     <div className="profile-form-container">
       <form className="auth-form" onSubmit={handleSubmit}>
         <h2>Update Profile</h2>
+        <label htmlFor="firstName" style={{color:"#00695c"}}>First Name</label>
         <input
           type="text"
           name="firstName"
@@ -41,6 +42,7 @@ function Profile({ user }) {
           placeholder="First Name"
           required
         />
+        <label htmlFor="lastName" style={{color:"#00695c"}}>Last Name</label>
         <input
           type="text"
           name="lastName"
@@ -49,6 +51,7 @@ function Profile({ user }) {
           placeholder="Last Name"
           required
         />
+        <label htmlFor="email" style={{color:"#00695c"}}>Email</label>
         <input
           type="email"
           name="email"
@@ -57,6 +60,7 @@ function Profile({ user }) {
           placeholder="Email"
           required
         />
+        <label htmlFor="Password" style={{color:"#00695c"}}>Password</label>
         <input
           type="text"
           name="password"
