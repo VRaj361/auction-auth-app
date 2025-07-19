@@ -8,6 +8,7 @@ function Dashboard() {
     <div className="dashboard">
       <nav className="sidebar">
         <Link to="/dashboard/profile">Profile</Link>
+        <Link to="/dashboard/vendorDetails">Vendor Profile</Link>
         <Link to="/dashboard/inquiry">Inquiry</Link>
         <Link to="/dashboard/purchase-order">Purchase Order</Link>
         <Link to="/signin" onClick={()=>{toast.success("Logout successfully")}}>Logout</Link>

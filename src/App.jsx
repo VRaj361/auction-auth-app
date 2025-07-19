@@ -8,6 +8,7 @@ import Profile from './pages/Profile';
 import Inquiry from './pages/Inquiry';
 import InquiryDetails from './pages/InquiryDetails';
 import PurchaseOrder from './pages/PurchaseOrder';
+import CompanyDetails from './pages/CompanyDetails'
 import './App.css';
 import {Toaster} from 'react-hot-toast'
 
@@ -40,6 +41,7 @@ function App() {
             }
           >
               <Route path="profile" element={<Profile user={user}/>} />
+              <Route path="vendorDetails" element={<CompanyDetails />} />
               <Route path="inquiry" element={<Inquiry />} />
               <Route path="inquiry/:id" element={<InquiryDetails />} />
               <Route path="purchase-order" element={<PurchaseOrder />} />
