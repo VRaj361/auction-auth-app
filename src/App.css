@@ -400,3 +400,116 @@ button {
 .next-btn:hover {
   background-color: #00695c;
 }
+
+
+.support-fab {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  border: none;
+  background-color: #004d40;
+  color: #ffffff;
+  font-size: 24px;
+  line-height: 1;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+  transition: background-color 0.2s ease, transform 0.1s ease;
+  z-index: 1100;
+}
+
+.support-fab:hover {
+  background-color: #00695c;
+  transform: scale(1.05);
+}
+
+.support-form-card {
+  position: fixed;
+  bottom: 5.5rem; /* above fab */
+  right: 2rem;
+  width: 320px;
+  max-width: calc(100% - 2rem);
+  background: #ffffff;
+  border: 2px solid #004d40;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+  z-index: 1101;
+  color: #004d40;
+}
+
+.support-form-card h4 {
+  margin-top: 0;
+  margin-bottom: 16px;
+  font-size: 18px;
+  font-weight: 600;
+  color: #004d40;
+  text-align: center;
+}
+
+.support-form-card form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.support-form-card input,
+.support-form-card textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 14px;
+  resize: vertical;
+  outline: none;
+  transition: border 0.2s ease, box-shadow 0.2s ease;
+}
+
+.support-form-card input:focus,
+.support-form-card textarea:focus {
+  border-color: #00695c;
+  box-shadow: 0 0 4px #004d40;
+}
+
+.support-form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.support-cancel-btn,
+.support-send-btn {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.support-cancel-btn {
+  background: #e0f2f1;
+  color: #004d40;
+}
+
+.support-cancel-btn:hover {
+  background: #b2dfdb;
+}
+
+.support-send-btn {
+  background: #004d40;
+  color: #ffffff;
+}
+
+.support-send-btn:hover {
+  background: #00695c;
+}
+
+.support-send-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}

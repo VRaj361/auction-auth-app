@@ -1,7 +1,5 @@
-import { Link, Routes, Route, Outlet } from 'react-router-dom';
-import Profile from './Profile';
-import Inquiry from './Inquiry';
-import PurchaseOrder from './PurchaseOrder';
+import { Link, Outlet } from 'react-router-dom';
+import SupportWidget from './SupportWidget'; 
 import '../Dashboard.css';
 import toast from 'react-hot-toast';
 
@@ -17,6 +15,7 @@ function Dashboard() {
       <div className="main">
         <Outlet /> 
       </div>
+      <SupportWidget />
     </div>
   );
 }
