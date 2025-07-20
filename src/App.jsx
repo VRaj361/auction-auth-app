@@ -7,8 +7,13 @@ import Dashboard from './pages/Dashboard';
 import Profile from './pages/Profile';
 import Inquiry from './pages/Inquiry';
 import InquiryDetails from './pages/InquiryDetails';
-import PurchaseOrder from './pages/PurchaseOrder';
+import InquiryStatus from './pages/InquiryStatus';
 import CompanyDetails from './pages/CompanyDetails'
+import PurchaseOrder from './pages/PurchaseOrder';
+import PurchaseOrderDetails from './pages/PurchaseOrderDetails';
+import AmendmentRequest from './pages/AmendmentRequest';
+import QueryPage from './pages/QueryPage';
+import PaymentPage from './pages/PaymentPage';
 import './App.css';
 import {Toaster} from 'react-hot-toast'
 
@@ -44,7 +49,12 @@ function App() {
               <Route path="vendorDetails" element={<CompanyDetails />} />
               <Route path="inquiry" element={<Inquiry />} />
               <Route path="inquiry/:id" element={<InquiryDetails />} />
+              <Route path="inquiry-status" element={<InquiryStatus />} />
               <Route path="purchase-order" element={<PurchaseOrder />} />
+              <Route path="purchase-order/:id" element={<PurchaseOrderDetails />} />
+              <Route path="amendment/:id" element={<AmendmentRequest />} />
+              <Route path="query/:id" element={<QueryPage />} />
+              <Route path="payment/:id" element={<PaymentPage />} />
           </Route>
           <Route path="*" element={<Navigate to="/signin" />} />
         </Routes>

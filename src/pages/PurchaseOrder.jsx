@@ -1,49 +1,48 @@
-// pages/PurchaseOrder.jsx
-import { useEffect, useState } from "react";
-import { BounceLoader } from "react-spinners";
+import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+import toast from 'react-hot-toast';
+import '../App.css';
 
 function PurchaseOrder() {
-  const [orders, setOrders] = useState([]);
+  const baseUrl = process.env.REACT_APP_SERVER_URL; // e.g. http://localhost:8000/
+  const [purchaseOrders, setPurchaseOrders] = useState([]);
   const [loading, setLoading] = useState(true);
-  const user = JSON.parse(localStorage.getItem("user"));
 
   useEffect(() => {
-    fetch(`${process.env.REACT_APP_SERVER_URL}api/inquiry-status/all?userId=${user._id}`)
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.success) {
-          setOrders(data.orders);
-          setLoading(false);
-        }
+    fetch(`${baseUrl}api/purchase-orders`)
+      .then(res => res.json())
+      .then(data => {
+        if (data.success) setPurchaseOrders(data.purchaseOrders || []);
+        else toast.error('Failed to load purchase orders');
       })
-      .catch((err) => { console.error(err); setLoading(false);});
-  }, [user._id]);
+      .catch(err => {
+        console.error(err);
+        toast.error('Server error fetching purchase orders');
+      })
+      .finally(() => setLoading(false));
+  }, [baseUrl]);
+
+  if (loading) return <p style={{color:'#004d40'}}>Loading purchase orders...</p>;
 
   return (
-    <div className="purchase-orders-container">
-      <h2>Your Purchase Orders</h2>
-      <BounceLoader
-        color={"#00695c"}
-        loading={loading}
-        size={50}
-        aria-label="Loading Spinner"
-        data-testid="loader"
-      />
-      {orders.length === 0 && !loading ? (
-        <p style={{color: "#004d40"}}>No purchase found.</p>
+    <div className="po-list-container">
+      <h2>Purchase Orders</h2>
+      {purchaseOrders.length === 0 ? (
+        <p>No purchase orders found.</p>
       ) : (
-        <div className="purchase-order-list">
-          {orders.map((order) => (
-            <div key={order.inquiryId} className="purchase-order-card">
-              <h3>{order.title}</h3>
-              <small>ID: {order.inquiryNumber}</small>
-              <p className="status">
-                Status:{" "}
-                <span className={`status ${order.status}`}>
-                  {order.status.toUpperCase()}
-                </span>
-              </p>
-            </div>
+        <div className="po-list">
+          {purchaseOrders.map((po) => (
+            <Link
+              key={po._id}
+              to={`/dashboard/purchase-order/${po._id}`}
+              className="po-card-link"
+            >
+              <div className="po-card">
+                <h3>{po.title}</h3>
+                <p>{po.description}</p>
+                <small>PO#: {po.purchaseNumber}</small>
+              </div>
+            </Link>
           ))}
         </div>
       )}

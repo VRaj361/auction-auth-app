@@ -51,7 +51,7 @@
 
 //       {status === 'pending' && (
 //         <div style={{ marginTop: '20px' }}>
-//           <p>Are you ready to purchase order?</p>
+//           <p>Are you ready to Inquiry Status?</p>
 //           <button onClick={() => alert('Handle accept logic here')}>Accept</button>
 //           <button onClick={handleReject} style={{ marginLeft: '10px' }}>Reject</button>
 //         </div>
@@ -221,7 +221,7 @@
 
 //       {status === "pending" && !showSteps && (
 //         <div className="decision-section">
-//           <p style={{ color: "#004d40" }}>Are you ready to purchase order?</p>
+//           <p style={{ color: "#004d40" }}>Are you ready to Inquiry Status?</p>
 //           <button className="accept-btn" onClick={handleAccept}>
 //             Accept
 //           </button>
@@ -346,7 +346,7 @@ function InquiryDetails() {
             <label key={i} className="step-checkbox">
               <input
                 type="checkbox"
-                checked={checkedFinal[i] || false}
+                checked={checkedFinal[i] || true}
                 onChange={() =>
                   setCheckedFinal((prev) => ({ ...prev, [i]: !prev[i] }))
                 }
@@ -443,8 +443,8 @@ function InquiryDetails() {
       />
     );
 
-  const allFinalChecked =
-    Object.values(checkedFinal).filter(Boolean).length === 5;
+  // const allFinalChecked =
+  //   Object.values(checkedFinal).filter(Boolean).length === 5;
 
   return (
     <div className="inquiry-detail-container">
@@ -466,7 +466,7 @@ function InquiryDetails() {
           {status === "pending" && !showSteps && (
             <div className="decision-section">
               <p style={{ color: "#004d40" }}>
-                Are you ready to purchase order?
+                Are you ready to inquiry status?
               </p>
               <button className="accept-btn" onClick={handleAccept}>
                 Accept
@@ -484,7 +484,20 @@ function InquiryDetails() {
           {status === "pending" && showSteps && (
             <div className="steps-section">
               <div className="step-content">{stepContent[step]}</div>
-              {step < 6 && (
+              {step < 6 && (step === 2 || step === 3 || step === 5) && (
+                <>
+                <button className="next-btn" onClick={handleNextStep}>
+                  Accept
+                </button>
+                <button className="next-btn" style={{"marginInline":"10px"}} onClick={handleNextStep}>
+                  Reject
+                </button>
+                <button className="next-btn" onClick={handleNextStep}>
+                  Accept for Deviation
+                </button>
+                </>
+              )}
+              {step < 6 && (step === 1 || step === 4) && (
                 <button className="next-btn" onClick={handleNextStep}>
                   Next
                 </button>
@@ -493,8 +506,9 @@ function InquiryDetails() {
                 <button
                   className="submit-btn"
                   onClick={handleAcceptSubmit}
-                  disabled={!allFinalChecked}
-                  style={{ opacity: allFinalChecked ? 1 : 0.5, cursor: allFinalChecked ? 'pointer' : 'not-allowed' }}
+                  // disabled={!allFinalChecked}
+                  // style={{ opacity: allFinalChecked ? 1 : 0.5, cursor: allFinalChecked ? 'pointer' : 'not-allowed' }}
+                  style={{ opacity: 1, cursor: 'pointer'}}
                 >
                   Submit in Mail
                 </button>
