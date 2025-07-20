@@ -29,7 +29,7 @@ function SupportWidget({ user: userProp }) {
     }
     try {
       setSubmitting(true);
-      const res = await fetch('http://localhost:8000/api/queries', {
+      const res = await fetch(`${process.env.REACT_APP_SERVER_URL}api/queries`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

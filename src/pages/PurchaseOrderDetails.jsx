@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
+import { BounceLoader } from 'react-spinners';
 import '../App.css';
 
 
@@ -35,12 +36,23 @@ function PurchaseOrderDetails() {
   //   toast.success(`${label} clicked (coming soon)`);
   // };
 
-  if (loading) return <p style={{color:'#004d40'}}>Loading purchase order...</p>;
+  // if (loading) return <p style={{color:'#004d40'}}>Loading purchase order...</p>;
+  if(loading) 
+    return (
+      <BounceLoader
+        color={"#00695c"}
+        loading={loading}
+        size={50}
+        aria-label="Loading Spinner"
+        data-testid="loader"
+      />
+    );
   if (!po) return <p style={{color:'red'}}>Purchase order missing.</p>;
 
   return (
     <div className="po-detail-container">
       <h2>{po.title}</h2>
+      
       <p className="po-detail-description" style={{color:'#004d40'}}>{po.description}</p>
       <small className="po-detail-number">PO#: {po.purchaseNumber}</small>
 

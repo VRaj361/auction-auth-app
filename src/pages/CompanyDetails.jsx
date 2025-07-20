@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
+import { BounceLoader } from 'react-spinners';
 import '../App.css';
 
 function CompanyDetails({ user: userProp }) {
@@ -178,13 +179,23 @@ function CompanyDetails({ user: userProp }) {
     }
   };
 
-  if (loading) return <p style={{color:'#004d40'}}>Loading Vendor profile...</p>;
+  // if (loading) return <p style={{color:'#004d40'}}>Loading Vendor profile...</p>;
+
+  if(loading) 
+    return (
+      <BounceLoader
+        color={"#00695c"}
+        loading={loading}
+        size={50}
+        aria-label="Loading Spinner"
+        data-testid="loader"
+      />
+    );
 
   return (
     <div className="company-details-container">
       <form className="company-details-form" onSubmit={handleSubmit}>
         <h2>Vendor Profile</h2>
-
         <label htmlFor="companyName">Company Name</label>
         <input
           id="companyName"

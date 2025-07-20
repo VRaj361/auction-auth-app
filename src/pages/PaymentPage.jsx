@@ -1,21 +1,7 @@
-// src/pages/PaymentPage.jsx
-// Payment workflow (4 steps) with Payment History + auto amount from fixed unit price.
-// Step 1: Show payment history (IST) + optional HR / Technical PDF selects.
-// Step 2: Enter Qty only; amount auto-calculated (UNIT_PRICE * Qty).
-// Step 3: Download invoice (toast) + optional signed invoice upload + Final Submission.
-//         Final Submission POSTs qty & amount to backend and appends to history.
-// Step 4: Completion summary + receipt download (toast).
-//
-// NOTE: PDF uploads are NOT sent to backend yet — placeholders only.
-// Backend endpoints expected:
-//   GET  {BASE}/api/payments/history?purchaseOrderId=...&userId=...optional
-//   POST {BASE}/api/payments  { userId, purchaseOrderId, qtyNumber, amount }
-//
-// Theme: dark green / white.
-
 import { useEffect, useMemo, useState } from "react";
 import { useParams } from "react-router-dom";
 import toast from "react-hot-toast";
+import { BounceLoader } from 'react-spinners';
 import "../App.css"; // global styles
 // import "./PaymentPage.css"; // component styles (table, buttons, etc.)
 
@@ -188,7 +174,17 @@ function PaymentPage() {
 
   // ----------------------- Render Helpers ---------------------------
   const renderHistoryTable = () => {
-    if (loadingHistory) return <p>Loading payment history...</p>;
+    // if (loadingHistory) return <p>Loading payment history...</p>;
+    if (loadingHistory) 
+      return (
+        <BounceLoader
+          color={"#00695c"}
+          loading={loadingHistory}
+          size={50}
+          aria-label="Loading Spinner"
+          data-testid="loader"
+        />
+      );
     if (!history.length) return <p>No prior payments.</p>;
     return (
       <table className="payment-history-table">

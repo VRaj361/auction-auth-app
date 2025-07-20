@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import toast from 'react-hot-toast';
+import { BounceLoader } from 'react-spinners';
 import '../App.css';
 
 function PurchaseOrder() {
@@ -22,12 +23,29 @@ function PurchaseOrder() {
       .finally(() => setLoading(false));
   }, [baseUrl]);
 
-  if (loading) return <p style={{color:'#004d40'}}>Loading purchase orders...</p>;
+  // if (loading) return <p style={{color:'#004d40'}}>Loading purchase orders...</p>;
+  // if(loading) 
+  //   return (
+  //     <BounceLoader
+  //       color={"#00695c"}
+  //       loading={loading}
+  //       size={50}
+  //       aria-label="Loading Spinner"
+  //       data-testid="loader"
+  //     />
+  //   );
 
   return (
     <div className="po-list-container">
       <h2>Purchase Orders</h2>
-      {purchaseOrders.length === 0 ? (
+      <BounceLoader
+        color={"#00695c"}
+        loading={loading}
+        size={50}
+        aria-label="Loading Spinner"
+        data-testid="loader"
+      />
+      {purchaseOrders.length === 0 && !loading ? (
         <p>No purchase orders found.</p>
       ) : (
         <div className="po-list">
