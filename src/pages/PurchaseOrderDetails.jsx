@@ -1,9 +1,8 @@
-import { useEffect, useState } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
-import toast from 'react-hot-toast';
-import { BounceLoader } from 'react-spinners';
-import '../App.css';
-
+import { useEffect, useState } from "react";
+import { useParams, useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
+import { BounceLoader } from "react-spinners";
+import "../App.css";
 
 function PurchaseOrderDetails() {
   const { id } = useParams();
@@ -16,20 +15,20 @@ function PurchaseOrderDetails() {
   useEffect(() => {
     setLoading(true);
     fetch(`${baseUrl}api/purchase-orders/${id}`)
-      .then(res => res.json())
-      .then(data => {
+      .then((res) => res.json())
+      .then((data) => {
         if (data.success) setPo(data.purchaseOrder);
-        else toast.error('Purchase order not found');
+        else toast.error("Purchase order not found");
       })
-      .catch(err => {
+      .catch((err) => {
         console.error(err);
-        toast.error('Server error fetching purchase order');
+        toast.error("Server error fetching purchase order");
       })
       .finally(() => setLoading(false));
   }, [id, baseUrl]);
 
   const handleDownload = () => {
-    toast.success('Download successfully'); // placeholder
+    toast.success("Download successfully"); // placeholder
   };
 
   // const handleAction = (label) => {
@@ -37,7 +36,7 @@ function PurchaseOrderDetails() {
   // };
 
   // if (loading) return <p style={{color:'#004d40'}}>Loading purchase order...</p>;
-  if(loading) 
+  if (loading)
     return (
       <BounceLoader
         color={"#00695c"}
@@ -47,13 +46,15 @@ function PurchaseOrderDetails() {
         data-testid="loader"
       />
     );
-  if (!po) return <p style={{color:'red'}}>Purchase order missing.</p>;
+  if (!po) return <p style={{ color: "red" }}>Purchase order missing.</p>;
 
   return (
     <div className="po-detail-container">
       <h2>{po.title}</h2>
-      
-      <p className="po-detail-description" style={{color:'#004d40'}}>{po.description}</p>
+
+      <p className="po-detail-description" style={{ color: "#004d40" }}>
+        {po.description}
+      </p>
       <small className="po-detail-number">PO#: {po.purchaseNumber}</small>
 
       <div className="po-download-row">
@@ -62,22 +63,29 @@ function PurchaseOrderDetails() {
         </button>
       </div>
 
-      <p className="po-status-row" style={{color:'#004d40'}}>
-        Current Status: <span className={`po-status ${po.status}`}>{po.status.toUpperCase()}</span>
+      <p className="po-status-row" style={{ color: "#004d40" }}>
+        Current Status:{" "}
+        <span className={`po-status pending`}>NOT SUBMITTED</span>/
+        <span className={`po-status rejected`}>RETURNED</span>/
+        <span className={`po-status approved`}>RECEIVED-12345</span>
       </p>
 
-      <div className="po-action-buttons">        
+      <div className="po-action-buttons">
         <button onClick={() => navigate(`/dashboard/amendment/${po._id}`)}>
           Amendment Request from Procurement
         </button>
         <button onClick={() => navigate(`/dashboard/payment/${po._id}`)}>
-          Payment
+          Payment Request
         </button>
-        <button onClick={() => navigate(`/dashboard/query/${po._id}?type=technical`)}>
-          Technical
+        <button
+          onClick={() => navigate(`/dashboard/query/${po._id}?type=technical`)}
+        >
+          Technical Request
         </button>
-        <button onClick={() => navigate(`/dashboard/query/${po._id}?type=general`)}>
-          Query
+        <button
+          onClick={() => navigate(`/dashboard/query/${po._id}?type=general`)}
+        >
+          Any other Query
         </button>
       </div>
     </div>

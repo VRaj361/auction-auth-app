@@ -16,8 +16,8 @@ function AmendmentRequest() {
     <div className="amendment-request-container">
       <h2>Amendment Request</h2>
       {/* <p><strong>Purchase Order ID:</strong> {id}</p> */}
-      <p><strong>Title:</strong> Change in the Purchase Order</p>
-      <p><strong>Description:</strong> Some details about the amendment request...</p>
+      <p><strong>Title:</strong> Change in the PO Quantity and validity extension</p>
+      <p><strong>Description:</strong> It is propose to add 20 quantity with validity extension upto 30-09-2025</p>
       <p>Are you accepting the amendment request?</p>
 
       {decision ? (

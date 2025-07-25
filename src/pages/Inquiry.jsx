@@ -17,7 +17,7 @@ function Inquiry() {
 
   return (
     <div className="inquiry-list-container">
-      <h2>Inquiries</h2>
+      <h2>Request For Quotation</h2>
       <BounceLoader
         color={"#00695c"}
         loading={loading}
@@ -36,6 +36,7 @@ function Inquiry() {
               <h3>{inq.title}</h3>
               <p>{inq.shortDescription}</p>
               <small>ID: {inq.inquiryNumber}</small>
+              <p>{inq.lastSubmissionDate ? `Last Submission Date: ` + inq.lastSubmissionDate : ""}</p>
             </div>
           </Link>
         ))}

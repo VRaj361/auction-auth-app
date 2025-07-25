@@ -266,7 +266,7 @@ function CompanyDetails({ user: userProp }) {
           disabled={!editMode}
         />
 
-        <label htmlFor="banker">Banker</label>
+        <label htmlFor="banker">Bank Name</label>
         <input
           id="banker"
           name="banker"

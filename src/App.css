@@ -903,3 +903,29 @@ input[type="number"]:focus {
   font-weight: 600;
 }
 
+.dropdown-select {
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  width: 100%;
+  margin-bottom: 16px;
+  outline: none;
+  background-color: #fff;
+}
+
+.dropdown-select:focus {
+  border-color: #00695c;
+  box-shadow: 0 0 4px #004d40;
+}
+
+.title-query:focus {
+  border-color: #00695c;
+  box-shadow: 0 0 4px #004d40;
+}
+
+.description-query:focus {
+  border-color: #00695c;
+  box-shadow: 0 0 4px #004d40;
+}
+

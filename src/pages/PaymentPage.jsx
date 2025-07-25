@@ -216,27 +216,34 @@ function PaymentPage() {
       {/* Step 1 */}
       {step === 1 && (
         <div className="payment-step">
-          <h3>Step 1: Submit Your Required Documents</h3>
-
           <div className="payment-history-block">
             <h4>Payment History</h4>
             {renderHistoryTable()}
           </div>
 
+          <b>For new payment follow below steps:</b>
+
+          <h3>Step 1: Submit Your Required Documents</h3>
+
           <div className="file-section">
-            <label>HR Compliance:</label>
+            <label>Compliance:</label>
             <input type="file" accept="application/pdf" onChange={onHrComplianceFile} />
             {hrComplianceFile && <small>{hrComplianceFile.name}</small>}
           </div>
           <div className="file-section">
-            <label>Technical Qty Sheet:</label>
+            <label>Technical Document / Measurement Sheet:</label>
             <input type="file" accept="application/pdf" onChange={onTechQtyFile} />
             {techQtyFile && <small>{techQtyFile.name}</small>}
           </div>
-
+          <div className="file-section">
+            <p>I hereby declare that I have thoroughly read, reviewed, and understood all documents, annexures, and materials provided, that my remarks are based solely on these materials to the best of my knowledge and belief, and that by proceeding to select next step acknowledge this submission as my final and formal position.</p>
+          </div>
           <button className="next-btn" onClick={nextFromStep1}>
-            Next Step
+            Submit For Further Review
           </button>
+          <div className="file-section">
+            <p>Note: Your documents will go for further verification to respected team also it may take time.</p>
+          </div>
         </div>
       )}
 
@@ -263,9 +270,18 @@ function PaymentPage() {
               <strong>Total Amount:</strong> ₹{totalAmount}
             </p>
           )}
+
+          <div className="file-section">
+            <p>I hereby declare that I have thoroughly read, reviewed, and understood all documents, annexures, and materials provided, that my remarks are based solely on these materials to the best of my knowledge and belief, and that by proceeding to select next step acknowledge this submission as my final and formal position.</p>
+          </div>
+
           <button className="next-btn" onClick={nextFromStep2}>
-            Next Step
+            Submit For Further Review
           </button>
+
+          <div className="file-section">
+            <p>Note: Your documents will go for further verification to respected team also it may take time.</p>
+          </div>
         </div>
       )}
 
@@ -285,8 +301,11 @@ function PaymentPage() {
             {signatureFile && <small>{signatureFile.name}</small>}
           </div>
           <button className="next-btn" onClick={finalSubmit}>
-            Final Submission
+            Final Invoicing
           </button>
+          <div className="file-section">
+            <p>Note: Your documents will go for final verification to finance team also it may take time.</p>
+          </div>
         </div>
       )}
 

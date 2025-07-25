@@ -162,7 +162,7 @@
 //       }),
 //     });
 //     const data = await res.json();
-//     if (data.success) { setStatus("rejected"); toast.success('You have rejected the inquiry.')};
+//     if (data.success) { setStatus("rejected"); toast.success('You have accepted the enquiry.')};
 //   };
 
 //   const handleCheckboxChange = (stepNumber) => {
@@ -189,7 +189,7 @@
 //       }),
 //     });
 //     const data = await res.json();
-//     if (data.success) { setStatus("accepted"); toast.success('You have accepted the inquiry.'); };
+//     if (data.success) { setStatus("accepted"); toast.success('You have accepted the enquiry.'); };
 //   };
 
 //   if (!inquiry)
@@ -232,7 +232,7 @@
 //       )}
 
 //       {status === "rejected" && (
-//         <p className="status-rejected">You have rejected the inquiry.</p>
+//         <p className="status-rejected">You have accepted the enquiry.</p>
 //       )}
 
 //       {status === "pending" && showSteps && (
@@ -264,7 +264,7 @@
 //       )}
 
 //       {status === "accepted" && (
-//         <p className="status-accepted">You have accepted the inquiry.</p>
+//         <p className="status-accepted">You have accepted the enquiry.</p>
 //       )}
 //       </>}
 //     </div>
@@ -293,54 +293,106 @@ function InquiryDetails() {
   const user = JSON.parse(localStorage.getItem("user"));
 
   const stepTitle = {
-    1: <span>General terms and conditions.</span>,
-    2: <span>Technical Specification.</span>,
-    3: <span>Technical Deviation.</span>,
-    4: <span>Commercial.</span>,
-    5: <span>Commercial Deviation.</span>,
+    1: <span>Confirm remark on Description.</span>,
+    2: <span>Confirm submission of Technical specification.</span>,
+    3: <span>Confirm remarks and submission of Technical Deviation.</span>,
+    4: <span>Confirm submission of Commercial document.</span>,
+    5: <span>Confirm remark and submissoin of Commercial Deviation.</span>,
   };
 
   const stepContent = {
     1: (
-      <p>Step 1: Please read and agree to the general terms and conditions.</p>
+      <>
+        <p>Step 1: Please find below description for Enquiry.</p>
+        <p>
+          I hereby declare that I have thoroughly read, reviewed, and understood
+          all documents, annexures, and materials provided, that my remarks are
+          based solely on these materials to the best of my knowledge and
+          belief, and that by proceeding to next option acknowledge this
+          submission as my final and formal position.
+        </p>
+      </>
     ),
     2: (
       <>
-        <p>Step 2: Review the Technical Specification.</p>
+        <p>Step 2: Please find below Technical documents.</p>
         <iframe
           src="/aristo.pdf"
           width="100%"
           height="500px"
           title="PDF Terms"
         />
+        <p>
+          I hereby declare that I have thoroughly read, reviewed, and understood
+          all documents, annexures, and materials provided, that my remarks are
+          based solely on these materials to the best of my knowledge and
+          belief, and that by proceeding to select one of the following
+          options-Agreed, Agreed with Deviation (subject to the deviations
+          stated in my remarks), or Not Agreed-I acknowledge this submission as
+          my final and formal position.
+        </p>
       </>
     ),
     3: (
       <>
-        <p>Step 3: Review the Technical Deviation.</p>
+        <p>Step 3: Please provide remarks in Technical Deviation Sheet.</p>
         <iframe
           src="/aristo.pdf"
           width="100%"
           height="500px"
           title="PDF Terms"
         />
+        <p>
+          I hereby declare that I have thoroughly read, reviewed, and understood
+          all documents, annexures, and materials provided, that my remarks are
+          based solely on these materials to the best of my knowledge and
+          belief, and that by proceeding to next option acknowledge this
+          submission as my final and formal position.
+        </p>
       </>
     ),
-    4: <p>Step 4: Confirm Commercial.</p>,
-    5: (
+    4: (
       <>
-        <p>Step 5: Review the Commercial Deviation.</p>
+        <p>
+          Step 4: Please provide your rates and remarks on terms and conditions
+          in below document.
+        </p>
         <iframe
           src="/aristo.pdf"
           width="100%"
           height="500px"
           title="PDF Terms"
         />
+        <p>
+          I hereby declare that I have thoroughly read, reviewed, and understood
+          all documents, annexures, and materials provided, that my remarks are
+          based solely on these materials to the best of my knowledge and
+          belief, and that by proceeding to next option acknowledge this
+          submission as my final and formal position.
+        </p>
+      </>
+    ),
+    5: (
+      <>
+        <p>Step 5: Please provide remarks in Commercial Deviation Sheet.</p>
+        <iframe
+          src="/aristo.pdf"
+          width="100%"
+          height="500px"
+          title="PDF Terms"
+        />
+        <p>
+          I hereby declare that I have thoroughly read, reviewed, and understood
+          all documents, annexures, and materials provided, that my remarks are
+          based solely on these materials to the best of my knowledge and
+          belief, and that by proceeding acknowledge this submission as my final
+          and formal position.
+        </p>
       </>
     ),
     6: (
       <>
-        <p>Step 6: All Document checklist.</p>
+        <b>All Document / Submission.</b>
         <div className="checkbox-group">
           {[1, 2, 3, 4, 5].map((i) => (
             <label key={i} className="step-checkbox">
@@ -351,10 +403,17 @@ function InquiryDetails() {
                   setCheckedFinal((prev) => ({ ...prev, [i]: !prev[i] }))
                 }
               />
-              {i}: Agree to condition of {stepTitle[i]}
+              {i}: {stepTitle[i]}
             </label>
           ))}
         </div>
+        <p>
+          I hereby declare that I have thoroughly read, reviewed, and understood
+          all documents, annexures, and materials provided, that my remarks are
+          based solely on these materials to the best of my knowledge and
+          belief, and that by proceeding acknowledge this submission as my final
+          and formal position.
+        </p>
       </>
     ),
   };
@@ -388,20 +447,23 @@ function InquiryDetails() {
   }, [id, user._id]);
 
   const handleReject = async () => {
-    const res = await fetch(`${process.env.REACT_APP_SERVER_URL}api/inquiry-status`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        userId: user._id,
-        inquiryNumber: inquiry.inquiryNumber,
-        inquiryId: id,
-        status: "rejected",
-      }),
-    });
+    const res = await fetch(
+      `${process.env.REACT_APP_SERVER_URL}api/inquiry-status`,
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          userId: user._id,
+          inquiryNumber: inquiry.inquiryNumber,
+          inquiryId: id,
+          status: "rejected",
+        }),
+      }
+    );
     const data = await res.json();
     if (data.success) {
       setStatus("rejected");
-      toast.success("You have rejected the inquiry.");
+      toast.success("You have rejected the enquiry.");
     }
   };
 
@@ -415,20 +477,23 @@ function InquiryDetails() {
   };
 
   const handleAcceptSubmit = async () => {
-    const res = await fetch(`${process.env.REACT_APP_SERVER_URL}api/inquiry-status`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        userId: user._id,
-        inquiryNumber: inquiry.inquiryNumber,
-        inquiryId: id,
-        status: "accepted",
-      }),
-    });
+    const res = await fetch(
+      `${process.env.REACT_APP_SERVER_URL}api/inquiry-status`,
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          userId: user._id,
+          inquiryNumber: inquiry.inquiryNumber,
+          inquiryId: id,
+          status: "accepted",
+        }),
+      }
+    );
     const data = await res.json();
     if (data.success) {
       setStatus("accepted");
-      toast.success("You have accepted the inquiry.");
+      toast.success("You have accepted the enquiry.");
     }
   };
 
@@ -466,7 +531,7 @@ function InquiryDetails() {
           {status === "pending" && !showSteps && (
             <div className="decision-section">
               <p style={{ color: "#004d40" }}>
-                Are you ready to inquiry status?
+                Are you interested in participating in this Enquiry?
               </p>
               <button className="accept-btn" onClick={handleAccept}>
                 Accept
@@ -478,37 +543,42 @@ function InquiryDetails() {
           )}
 
           {status === "rejected" && (
-            <p className="status-rejected">You have rejected the inquiry.</p>
+            <p className="status-rejected">You have rejected the enquiry.</p>
           )}
 
           {status === "pending" && showSteps && (
             <div className="steps-section">
               <div className="step-content">{stepContent[step]}</div>
-              {step < 6 && (step === 2 || step === 3 || step === 5) && (
+              {step < 6 && step === 2 && (
                 <>
-                <button className="next-btn" onClick={handleNextStep}>
-                  Accept
-                </button>
-                <button className="next-btn" style={{"marginInline":"10px"}} onClick={handleNextStep}>
-                  Reject
-                </button>
-                <button className="next-btn" onClick={handleNextStep}>
-                  Accept for Deviation
-                </button>
+                  <button className="next-btn" onClick={handleNextStep}>
+                    Accept
+                  </button>
+                  <button
+                    className="next-btn"
+                    style={{ marginInline: "10px" }}
+                    onClick={handleNextStep}
+                  >
+                    Reject
+                  </button>
+                  <button className="next-btn" onClick={handleNextStep}>
+                    Accept with Deviation
+                  </button>
                 </>
               )}
-              {step < 6 && (step === 1 || step === 4) && (
-                <button className="next-btn" onClick={handleNextStep}>
-                  Next
-                </button>
-              )}
+              {step < 6 &&
+                (step === 1 || step === 4 || step === 3 || step === 5) && (
+                  <button className="next-btn" onClick={handleNextStep}>
+                    Next
+                  </button>
+                )}
               {step === 6 && (
                 <button
                   className="submit-btn"
                   onClick={handleAcceptSubmit}
                   // disabled={!allFinalChecked}
                   // style={{ opacity: allFinalChecked ? 1 : 0.5, cursor: allFinalChecked ? 'pointer' : 'not-allowed' }}
-                  style={{ opacity: 1, cursor: 'pointer'}}
+                  style={{ opacity: 1, cursor: "pointer" }}
                 >
                   Submit in Mail
                 </button>
@@ -517,7 +587,7 @@ function InquiryDetails() {
           )}
 
           {status === "accepted" && (
-            <p className="status-accepted">You have accepted the inquiry.</p>
+            <p className="status-accepted">You have accepted the enquiry.</p>
           )}
         </>
       )}
