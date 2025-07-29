@@ -64,7 +64,7 @@ function PurchaseOrderDetails() {
       </div>
 
       <p className="po-status-row" style={{ color: "#004d40" }}>
-        Current Status:{" "}
+        Current BG Status:{" "}
         <span className={`po-status pending`}>NOT SUBMITTED</span>/
         <span className={`po-status rejected`}>RETURNED</span>/
         <span className={`po-status approved`}>RECEIVED-12345</span>

@@ -317,7 +317,7 @@ function InquiryDetails() {
       <>
         <p>Step 2: Please find below Technical documents.</p>
         <iframe
-          src="/aristo.pdf"
+          src="/technicaldocument.pdf"
           width="100%"
           height="500px"
           title="PDF Terms"
@@ -337,7 +337,7 @@ function InquiryDetails() {
       <>
         <p>Step 3: Please provide remarks in Technical Deviation Sheet.</p>
         <iframe
-          src="/aristo.pdf"
+          src="/deviationsheet.pdf"
           width="100%"
           height="500px"
           title="PDF Terms"
@@ -358,7 +358,7 @@ function InquiryDetails() {
           in below document.
         </p>
         <iframe
-          src="/aristo.pdf"
+          src="/commercialdocument.pdf"
           width="100%"
           height="500px"
           title="PDF Terms"
@@ -376,7 +376,7 @@ function InquiryDetails() {
       <>
         <p>Step 5: Please provide remarks in Commercial Deviation Sheet.</p>
         <iframe
-          src="/aristo.pdf"
+          src="/deviationsheet.pdf"
           width="100%"
           height="500px"
           title="PDF Terms"
