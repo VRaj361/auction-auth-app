@@ -355,7 +355,7 @@ function InquiryDetails() {
       <>
         <p>
           Step 4: Please provide your rates and remarks on terms and conditions
-          in below document.
+          in below Commercial document.
         </p>
         <iframe
           src="/commercialdocument.pdf"
